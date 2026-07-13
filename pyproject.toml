@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "marketplace"
+version = "0.1.0"
+description = "Multi-agent negotiation with a shared RDF/OWL ontology (SPARQL matching) and reinforcement learning (Q-learning), with a SPADE/XMPP deployment adapter."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["multi-agent", "reinforcement-learning", "semantic-web", "ontology", "sparql", "spade", "negotiation"]
+dependencies = ["rdflib", "matplotlib"]
+
+[project.optional-dependencies]
+spade = ["spade"]
+dev = ["pytest", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 95
+target-version = "py310"
+[tool.ruff.lint]
+ignore = ["E402"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

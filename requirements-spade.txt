@@ -1,0 +1,2 @@
+# Optional: real SPADE agents over XMPP (needs an XMPP server, see setup/)
+spade

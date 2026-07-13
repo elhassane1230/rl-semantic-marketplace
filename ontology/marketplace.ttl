@@ -1,0 +1,39 @@
+@prefix ex:   <http://example.org/market#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+########################################################################
+# Marketplace ontology: the shared vocabulary agents use to understand
+# each other. Categories form a taxonomy (subClassOf) so a buyer who wants
+# a broad category is satisfied by any item of a narrower one.
+########################################################################
+
+ex:Item      a owl:Class .
+ex:Offer     a owl:Class .
+ex:Agent     a owl:Class .
+ex:Buyer     a owl:Class ; rdfs:subClassOf ex:Agent .
+ex:Seller    a owl:Class ; rdfs:subClassOf ex:Agent .
+
+# --- category taxonomy ---
+ex:Category    a owl:Class .
+ex:Electronics a owl:Class ; rdfs:subClassOf ex:Category .
+ex:Computer    a owl:Class ; rdfs:subClassOf ex:Electronics .
+ex:Laptop      a owl:Class ; rdfs:subClassOf ex:Computer .
+ex:Phone       a owl:Class ; rdfs:subClassOf ex:Electronics .
+ex:Furniture   a owl:Class ; rdfs:subClassOf ex:Category .
+ex:Chair       a owl:Class ; rdfs:subClassOf ex:Furniture .
+
+# --- properties ---
+ex:hasCategory    a owl:ObjectProperty  ; rdfs:domain ex:Item  ; rdfs:range ex:Category .
+ex:hasQuality     a owl:DatatypeProperty ; rdfs:domain ex:Item ; rdfs:range xsd:integer .
+ex:reservePrice   a owl:DatatypeProperty ; rdfs:domain ex:Item ; rdfs:range xsd:integer .
+
+ex:wantsCategory  a owl:ObjectProperty  ; rdfs:domain ex:Buyer ; rdfs:range ex:Category .
+ex:minQuality     a owl:DatatypeProperty ; rdfs:domain ex:Buyer ; rdfs:range xsd:integer .
+ex:budget         a owl:DatatypeProperty ; rdfs:domain ex:Buyer ; rdfs:range xsd:integer .
+ex:valuation      a owl:DatatypeProperty ; rdfs:domain ex:Buyer ; rdfs:range xsd:integer .
+
+ex:aboutItem      a owl:ObjectProperty  ; rdfs:domain ex:Offer ; rdfs:range ex:Item .
+ex:hasPrice       a owl:DatatypeProperty ; rdfs:domain ex:Offer ; rdfs:range xsd:integer .

@@ -1,0 +1,3 @@
+# Core: everything runs offline (ontology + agents + RL + plots)
+rdflib
+matplotlib
