@@ -26,7 +26,7 @@ networked XMPP agents for deployment.
 **Semantic web (rdflib).** Items and buyer preferences are RDF resources under a
 small [ontology](ontology/marketplace.ttl) with a category taxonomy. A buyer who
 wants a broad category is satisfied by an item of a narrower one, resolved by a
-SPARQL `rdfs:subClassOf*` path — genuine ontological reasoning, not hard-coded
+SPARQL `rdfs:subClassOf*` path, genuine ontological reasoning, not hard-coded
 `if`s. This is the **gate**: only semantically-matching pairs negotiate.
 
 ```
@@ -62,7 +62,7 @@ Trained agents vs a random-policy baseline, on the same held-out scenarios
 
 RL raises the **agreement rate** (0.79 → 0.96) and **total welfare** (3.02 →
 3.52): the agents learn to reach efficient deals instead of walking away. The
-**surplus split** shifts toward the seller — a genuine multi-agent dynamic: the
+**surplus split** shifts toward the seller, a genuine multi-agent dynamic: the
 seller moves first on price and learns to capture more of the surplus, while the
 buyer only learns to reject clearly-bad offers. It's an emergent equilibrium, not
 a bug.
@@ -78,7 +78,7 @@ filtered out by the ontology before any negotiation.
 
 The negotiation logic and the learned policies are transport-independent:
 
-- **Offline runtime (default).** An in-process asyncio bus — the whole system
+- **Offline runtime (default).** An in-process asyncio bus, the whole system
   trains and runs anywhere, deterministically, with no XMPP server. This is what
   the simulation, tests and CI use.
 - **SPADE deployment.** [`spade_adapter.py`](src/marketplace/spade_adapter.py)
@@ -89,7 +89,7 @@ The negotiation logic and the learned policies are transport-independent:
 
 > Why two? SPADE needs a running XMPP server (and TLS certs), which shouldn't be
 > a prerequisite for training or CI. So the RL/semantics run everywhere, and
-> SPADE is the networked deployment path — the same split you'd use in practice.
+> SPADE is the networked deployment path, the same split you'd use in practice.
 
 ---
 
@@ -135,7 +135,7 @@ docs/             ARCHITECTURE · RESULTS · IMPROVEMENTS
 
 ## Design notes
 - **Ontology as the gate**: the semantic layer decides *who negotiates*, the RL
-  decides *how* — a clean separation of the three concerns.
+  decides *how*, a clean separation of the three concerns.
 - **Memoised SPARQL**: the taxonomic check is computed by SPARQL and cached, so a
   long simulation stays fast without giving up real semantic reasoning.
 - **Same policy, two transports**: identical negotiation on the offline bus and
@@ -145,7 +145,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md),
 [`docs/RESULTS.md`](docs/RESULTS.md), [`docs/IMPROVEMENTS.md`](docs/IMPROVEMENTS.md).
 
 ## Related project
-This is the **competitive** side of multi-agent RL — a zero-sum-ish negotiation
+This is the **competitive** side of multi-agent RL, a zero-sum-ish negotiation
 between a buyer and a seller. Its counterpart,
 [`semantic-rescue-coordination`](https://github.com/), tackles the **cooperative**
 side: responder agents share one objective and form coalitions, coordinated with
@@ -154,7 +154,7 @@ RL), opposite incentive structures.
 
 ## Tech stack
 Python · rdflib (RDF/OWL + SPARQL) · asyncio · matplotlib. Deployment: **SPADE**
-(agents over XMPP) via `spade_adapter.py` + `scripts/run_spade.py` — see
+(agents over XMPP) via `spade_adapter.py` + `scripts/run_spade.py`, see
 [`docs/RUNNING_SPADE.md`](docs/RUNNING_SPADE.md).
 
 ## License
